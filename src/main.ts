@@ -32,6 +32,11 @@ async function bootstrap() {
   app.useGlobalPipes(new ZodValidationPipe())
   app.useGlobalFilters(new ZodFilter())
 
+  if (env.NODE_ENV !== "development") {
+    // app.enableCors();
+    app.setGlobalPrefix('api/v1');
+  }
+
   await app.listen(env.PORT, "0.0.0.0");
 }
 bootstrap();
